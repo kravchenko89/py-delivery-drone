@@ -46,7 +46,6 @@ class FlyingRobot(BaseRobot):
         self.z -= step
 
 
-
 class DeliveryDrone(FlyingRobot):
     def __init__(
         self,
