@@ -36,6 +36,7 @@ class FlyingRobot(BaseRobot):
             coords = [0, 0, 0]
 
         super().__init__(name, weight, coords[:2])
+
         self.z = coords[2]
 
     def go_up(self, step: int = 1) -> None:
@@ -44,16 +45,6 @@ class FlyingRobot(BaseRobot):
     def go_down(self, step: int = 1) -> None:
         self.z -= step
 
-    @property
-    def coords(self) -> list:
-        # возвращаем полный список [x, y, z]
-        return [self._coords[0], self._coords[1], self.z]
-
-    @coords.setter
-    def coords(self, value: list) -> None:
-        # если задают coords = [x, y, z]
-        self._coords = value[:2]
-        self.z = value[2] if len(value) > 2 else 0
 
 
 class DeliveryDrone(FlyingRobot):
