@@ -33,17 +33,36 @@ class BaseRobot:
 class FlyingRobot(BaseRobot):
     def __init__(self, name: str, weight: int, coords: list = None) -> None:
         if coords is None:
-            coords = [0, 0, 0]
+            coords = [0, 0, 0]  # по умолчанию [x, y, z]
 
         super().__init__(name, weight, coords[:2])
 
-        self.z = coords[2]
+        self.coords.append(coords[2])
 
     def go_up(self, step: int = 1) -> None:
-        self.z += step
+        self.coords[2] += step
 
     def go_down(self, step: int = 1) -> None:
-        self.z -= step
+        self.coords[2] -= step
+
+
+class FlyingRobot(BaseRobot):
+    def __init__(self, name: str, weight: int, coords: list = None) -> None:
+        if coords is None:
+            coords = [0, 0, 0]  # по умолчанию [x, y, z]
+
+        # BaseRobot хранит x, y
+        super().__init__(name, weight, coords[:2])
+
+        # добавляем z как третий элемент в coords
+        self.coords.append(coords[2])
+
+    def go_up(self, step: int = 1) -> None:
+        self.coords[2] += step
+
+    def go_down(self, step: int = 1) -> None:
+        self.coords[2] -= step
+
 
 
 class DeliveryDrone(FlyingRobot):
